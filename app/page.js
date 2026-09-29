@@ -96,7 +96,7 @@ const PRIORITIES = ["Low", "Medium", "High"];
 
 function ModeSwitch({ mode, setMode }) {
   return (
-    <div className="inline-flex rounded-full border border-line bg-card p-1" role="group" aria-label="Switch between then and now">
+    <div className="inline-flex rounded-full border-2 border-line bg-card p-1" role="group" aria-label="Switch between then and now">
       {["then", "now"].map((m) => (
         <button
           key={m}
@@ -121,7 +121,7 @@ function LinkBtn({ href, children, primary }) {
       target={href.startsWith("http") ? "_blank" : undefined}
       rel="noreferrer"
       className={`inline-block rounded-full px-5 py-2.5 text-sm font-medium transition-colors ${
-        primary ? "bg-forest text-bg hover:bg-ink" : "border border-ink/20 hover:border-ink"
+        primary ? "bg-forest text-bg hover:bg-ink" : "border-2 border-ink/40 hover:border-ink"
       }`}
     >
       {children}
@@ -169,7 +169,7 @@ function HelpDesk() {
           onChange={(e) => setTitle(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && create()}
           placeholder="e.g. Can't log in to email"
-          className="mt-2 w-full rounded-lg border border-line bg-card px-4 py-3 outline-none focus:border-forest"
+          className="mt-2 w-full rounded-lg border-2 border-line bg-card px-4 py-3 outline-none focus:border-forest"
         />
         {error && <p className="mt-2 text-sm text-[#A33A2B]">{error}</p>}
         <p className="mt-5 text-sm text-muted">Priority</p>
@@ -179,7 +179,7 @@ function HelpDesk() {
               key={p}
               onClick={() => setPriority(p)}
               aria-pressed={priority === p}
-              className={`flex-1 rounded-lg border px-3 py-2 text-sm transition-colors ${
+              className={`flex-1 rounded-lg border-2 px-3 py-2 text-sm transition-colors ${
                 priority === p ? "border-forest bg-mint font-medium" : "border-line hover:border-muted"
               }`}
             >
@@ -211,7 +211,7 @@ function HelpDesk() {
                 {t.status}
               </span>
               {t.status !== "Resolved" && (
-                <button onClick={() => advance(t.id)} className="shrink-0 rounded-full border border-bg/30 px-3 py-1 text-xs hover:bg-bg hover:text-forest">
+                <button onClick={() => advance(t.id)} className="shrink-0 rounded-full border-2 border-bg/50 px-3 py-1 text-xs hover:bg-bg hover:text-forest">
                   {t.status === "Open" ? "Start" : "Resolve"}
                 </button>
               )}
@@ -266,7 +266,7 @@ function WorkoutTracker() {
   const totalSets = log.reduce((sum, e) => sum + e.sets, 0);
   const totalVolume = log.reduce((sum, e) => sum + e.sets * e.reps * e.weight, 0);
 
-  const inputClass = "mt-2 w-full rounded-lg border border-line bg-card px-4 py-3 outline-none focus:border-forest";
+  const inputClass = "mt-2 w-full rounded-lg border-2 border-line bg-card px-4 py-3 outline-none focus:border-forest";
 
   return (
     <div className="grid gap-6 lg:grid-cols-[1fr_1.3fr]">
@@ -332,7 +332,7 @@ function WorkoutTracker() {
                 <span className="shrink-0 rounded-full bg-mint px-3 py-1 text-xs font-medium text-forest">
                   {(e.sets * e.reps * e.weight).toLocaleString()} lb
                 </span>
-                <button onClick={() => remove(e.id)} className="shrink-0 rounded-full border border-bg/30 px-3 py-1 text-xs hover:bg-bg hover:text-forest">
+                <button onClick={() => remove(e.id)} className="shrink-0 rounded-full border-2 border-bg/50 px-3 py-1 text-xs hover:bg-bg hover:text-forest">
                   Remove
                 </button>
               </li>
@@ -359,17 +359,17 @@ const demos = {
 
 function ProjectCard({ p, open, onToggle }) {
   return (
-    <article className="rounded-2xl border border-line bg-card">
+    <article className="rounded-2xl border-2 border-line bg-card">
       <button onClick={onToggle} aria-expanded={open} className="flex w-full items-center gap-4 p-6 text-left sm:p-8">
         <div className="flex-1">
           <p className="text-sm text-forest">{p.type}</p>
           <h3 className="mt-1 text-2xl font-semibold">{p.title}</h3>
           <p className="mt-2 text-muted">{p.summary}</p>
         </div>
-        <span className={`grid h-10 w-10 shrink-0 place-items-center rounded-full border border-line text-xl transition-transform ${open ? "rotate-45" : ""}`}>+</span>
+        <span className={`grid h-10 w-10 shrink-0 place-items-center rounded-full border-2 border-line text-xl transition-transform ${open ? "rotate-45" : ""}`}>+</span>
       </button>
       {open && (
-        <div className="pop border-t border-line px-6 pb-8 pt-6 sm:px-8">
+        <div className="pop border-t-2 border-line px-6 pb-8 pt-6 sm:px-8">
           {p.note && <p className="mb-4 inline-block rounded-full bg-tag px-3 py-1 text-xs font-medium">{p.note}</p>}
           <ul className="flex flex-col gap-3 text-muted">
             {p.details.map((d) => <li key={d}>{d}</li>)}
@@ -431,7 +431,7 @@ export default function Home() {
           <h2 className="mb-5 text-sm font-medium text-muted">Core skills</h2>
           <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
             {coreSkills.map((s) => (
-              <li key={s.name} className="rounded-2xl border border-line bg-card px-5 py-4">
+              <li key={s.name} className="rounded-2xl border-2 border-line bg-card px-5 py-4">
                 <p className="text-lg font-semibold">{s.name}</p>
                 <p className="text-sm text-muted">{s.text}</p>
               </li>
@@ -439,7 +439,7 @@ export default function Home() {
           </ul>
         </section>
 
-        <section id="skills" className="scroll-mt-8 border-t border-line">
+        <section id="skills" className="scroll-mt-8 border-t-2 border-line">
           <div className="mx-auto max-w-6xl px-5 py-24 sm:px-8">
             <div className="mb-10 flex flex-wrap items-end justify-between gap-6">
               <div>
@@ -456,8 +456,8 @@ export default function Home() {
                 return (
                   <div
                     key={i}
-                    className={`rounded-2xl border p-6 transition-colors duration-300 sm:p-8 ${
-                      mode === "now" ? "border-forest/20 bg-mint" : "border-line bg-card"
+                    className={`rounded-2xl border-2 p-6 transition-colors duration-300 sm:p-8 ${
+                      mode === "now" ? "border-forest/40 bg-mint" : "border-line bg-card"
                     }`}
                   >
                     <div key={mode} className="swap">
@@ -479,7 +479,7 @@ export default function Home() {
                 <h2 className="text-4xl font-bold tracking-tight">Try my projects</h2>
                 <p key={demo} className="swap mt-3 max-w-[58ch] text-bg/75">{demos[demo].text}</p>
               </div>
-              <div className="inline-flex rounded-full border border-bg/30 p-1" role="group" aria-label="Choose a demo">
+              <div className="inline-flex rounded-full border-2 border-bg/50 p-1" role="group" aria-label="Choose a demo">
                 {Object.entries(demos).map(([key, d]) => (
                   <button
                     key={key}
@@ -512,7 +512,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="border-t border-line">
+        <section className="border-t-2 border-line">
           <div className="mx-auto max-w-6xl px-5 py-24 sm:px-8">
             <h2 className="mb-10 text-4xl font-bold tracking-tight">What I build with</h2>
             <div className="grid gap-10 sm:grid-cols-2">
@@ -521,7 +521,7 @@ export default function Home() {
                   <h3 className="mb-4 text-lg font-semibold text-forest">{group}</h3>
                   <ul className="flex flex-wrap gap-3">
                     {items.map((s) => (
-                      <li key={s} className="rounded-full border border-line bg-card px-4 py-2 text-lg">{s}</li>
+                      <li key={s} className="rounded-full border-2 border-line bg-card px-4 py-2 text-lg">{s}</li>
                     ))}
                   </ul>
                 </div>
@@ -540,8 +540,8 @@ export default function Home() {
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <a href={`mailto:${me.email}`} className="rounded-full bg-tag px-6 py-3 font-medium text-ink hover:bg-bg">Email me</a>
-              <a href={`tel:+1${me.phone.replace(/\D/g, "")}`} className="rounded-full border border-bg/30 px-6 py-3 hover:border-bg">Call {me.phone}</a>
-              <a href={me.github} target="_blank" rel="noreferrer" className="rounded-full border border-bg/30 px-6 py-3 hover:border-bg">GitHub</a>
+              <a href={`tel:+1${me.phone.replace(/\D/g, "")}`} className="rounded-full border-2 border-bg/50 px-6 py-3 hover:border-bg">Call {me.phone}</a>
+              <a href={me.github} target="_blank" rel="noreferrer" className="rounded-full border-2 border-bg/50 px-6 py-3 hover:border-bg">GitHub</a>
             </div>
             <p className="mt-6 text-bg/70">{me.email}</p>
           </div>
