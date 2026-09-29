@@ -1,0 +1,45 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-bg: #F5F6FF;
+  --color-card: #FFFFFF;
+  --color-ink: #1C1D3A;
+  --color-muted: #5A6080;
+  --color-forest: #4B3FB5;
+  --color-mint: #E6E4FF;
+  --color-tag: #F4D35E;
+  --color-line: #D3D6F0;
+  --font-sans: var(--font-display), system-ui, sans-serif;
+  --font-mono: var(--font-code), ui-monospace, monospace;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  color: var(--color-ink);
+  background: #E4EEFF;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(circle at 15% 10%, #CFE4FF 0%, transparent 55%),
+    radial-gradient(circle at 85% 90%, #E2D4FF 0%, transparent 55%),
+    linear-gradient(135deg, #DCEAFF 0%, #E4E2FF 50%, #EBDDFF 100%);
+}
+
+:focus-visible { outline: 2px solid var(--color-forest); outline-offset: 3px; border-radius: 6px; }
+
+@keyframes swap { from { opacity: 0; transform: translateY(0.4em); } to { opacity: 1; transform: none; } }
+.swap { animation: swap 0.45s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+
+@keyframes pop { from { opacity: 0; transform: scale(0.97); } to { opacity: 1; transform: none; } }
+.pop { animation: pop 0.3s ease-out both; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { animation: none !important; transition: none !important; }
+}
